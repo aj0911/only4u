@@ -15,14 +15,14 @@ export function ProposalCard() {
   const title = useMemo(() => {
     switch (step) {
       case "initial":
-        return "Ridhima, would you be my Girlfriend? 💖"
+        return "Jiya, would you be my Friend? 💖"
       case "nudge":
       case "evasive":
         return "Bnja naa yrr 😭"
       case "yes":
-        return "Yay, Ridhima! You just made me the happiest person 💞"
+        return "Yay, Jiya! You just made me the happiest person 💞"
       case "finally-yes":
-        return "Hehe, Ridhima—knew you’d say yes eventually 😍💫"
+        return "Hehe, Jiya—knew you’d say yes eventually 😍💫"
     }
   }, [step])
 
@@ -135,7 +135,7 @@ export function ProposalCard() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.35 }}
               >
-                {"Sending you infinite hugs, laughs, and adventures, Ridhima! 🫶✨"}
+                {"Sending you infinite hugs, laughs, and adventures, Jiya! 🫶✨"}
               </motion.p>
             )}
 
@@ -215,7 +215,7 @@ export function ProposalCard() {
                   animate={{ opacity: step === "evasive" ? 1 : 0.6, y: 0 }}
                   transition={{ duration: 0.3 }}
                 >
-                  {"You can’t escape me, Ridhima 😜💘"}
+                  {"You can’t escape me, Jiya 😜💘"}
                 </motion.p>
               </div>
             )}
@@ -228,7 +228,7 @@ export function ProposalCard() {
                 className="text-center"
               >
                 <p className="text-base md:text-lg">
-                  {"Couple forever activated, Ridhima! 🤝💫 Let’s make beautiful memories."}
+                  {"Couple forever activated, Jiya! 🤝💫 Let’s make beautiful memories."}
                 </p>
                 <div className="mt-4 flex items-center justify-center gap-2">
                   <Button
