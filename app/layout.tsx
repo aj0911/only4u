@@ -20,8 +20,8 @@ const dancing = Dancing_Script({
 })
 
 export const metadata: Metadata = {
-  title: "Sania, can I be your friend? 💖",
-  description: "A cute and sweet proposal for Sania"
+  title: "Madhuri, can I be your friend? 🌅",
+  description: "A cute friend proposal for Madhuri",
 }
 
 export default function RootLayout({

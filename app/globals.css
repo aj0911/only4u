@@ -37,12 +37,14 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
-  /* love-brand palette (4 colors total + neutral foreground) */
-  --love-bg-1: #ffe4e6; /* rose-100 */
-  --love-bg-2: #fecdd3; /* pink-200 */
-  --love-bg-3: #fb7185; /* rose-400 */
-  --love-accent: #ef4444; /* red-500 */
-  --love-foreground: #1f2937; /* slate-800 */
+  /* sunset-friendship palette */
+  --love-bg-1: #fff7ed; /* orange-50 soft warm peach */
+  --love-bg-2: #fed7aa; /* orange-200 golden sunset amber */
+  --love-bg-3: #fda4af; /* rose-300 soft pink glow */
+  --love-bg-4: #f43f5e; /* rose-500 sunset horizon */
+  --love-accent: #f43f5e; /* radiant rose/coral */
+  --love-sunset: #f97316; /* sunset pizza orange */
+  --love-foreground: #1e293b; /* slate-800 */
 }
 
 .dark {
@@ -80,9 +82,9 @@
   --sidebar-ring: oklch(0.439 0 0);
 }
 
-/* gradient utility for the page background */
+/* gradient utility for the sunset page background */
 .bg-love-gradient {
-  background-image: linear-gradient(180deg, var(--love-bg-1), var(--love-bg-2), var(--love-bg-3));
+  background-image: linear-gradient(165deg, #fff7ed 0%, #ffedd5 20%, #fecdd3 50%, #fda4af 75%, #fb7185 100%);
 }
 
 /* subtle glow for interactive elements */

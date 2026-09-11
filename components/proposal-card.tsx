@@ -15,14 +15,14 @@ export function ProposalCard() {
   const title = useMemo(() => {
     switch (step) {
       case "initial":
-        return "Sania, can I be your friend? 💖"
+        return "Madhuri, can I be your friend? 🌅✨"
       case "nudge":
       case "evasive":
         return "Bnja naa yrr 😭"
       case "yes":
-        return "Yay, Sania! You just made me the happiest person 💞"
+        return "Yay, Madhuri! 💞"
       case "finally-yes":
-        return "Hehe, Sania—knew you’d say yes eventually 😍💫"
+        return "Hehe, knew you’d say yes! 🍕✨"
     }
   }, [step])
 
@@ -35,7 +35,7 @@ export function ProposalCard() {
         origin: { y: 0.7 },
         scalar: 0.8,
         ticks: 160,
-        colors: ["#fb7185", "#ef4444", "#fca5a5", "#f43f5e"],
+        colors: ["#f97316", "#fb7185", "#f43f5e", "#fda4af"],
       })
       confetti({
         particleCount: 100,
@@ -69,18 +69,17 @@ export function ProposalCard() {
   const moveNoButton = useCallback(() => {
     if (!zoneRef.current) return
     const rect = zoneRef.current.getBoundingClientRect()
-    // keep button within the zone with some margins
     const margin = 16
-    const maxX = Math.max(0, rect.width - 120 - margin) // approx button width
-    const maxY = Math.max(0, rect.height - 48 - margin) // approx button height
+    const maxX = Math.max(0, rect.width - 120 - margin)
+    const maxY = Math.max(0, rect.height - 48 - margin)
     const x = Math.round(Math.random() * maxX)
     const y = Math.round(Math.random() * maxY)
     setNoXY({ x, y })
   }, [])
 
   return (
-    <div className="w-full max-w-md">
-      <Card className="rounded-3xl shadow-lg border-0 bg-white/85 backdrop-blur-md">
+    <div className="w-full max-w-md mx-auto">
+      <Card className="rounded-3xl shadow-xl border-0 bg-white/90 backdrop-blur-md">
         <CardContent className="p-6 md:p-8">
           <AnimatePresence mode="popLayout">
             <motion.h1
@@ -97,12 +96,16 @@ export function ProposalCard() {
           </AnimatePresence>
 
           {/* Button Zone */}
-          <div ref={zoneRef} className="relative mt-6 md:mt-8" style={{ minHeight: step === "evasive" ? 180 : 0 }}>
+          <div
+            ref={zoneRef}
+            className="relative mt-6 md:mt-8"
+            style={{ minHeight: step === "evasive" ? 180 : 0 }}
+          >
             {step === "initial" && (
               <div className="flex items-center justify-center gap-3 md:gap-4">
                 <Button
                   onClick={handleYes}
-                  className="glow-hover"
+                  className="glow-hover cursor-pointer"
                   style={{
                     background: "var(--love-accent)",
                     color: "white",
@@ -115,7 +118,7 @@ export function ProposalCard() {
                 <Button
                   onClick={goNudge}
                   variant="secondary"
-                  className="glow-hover"
+                  className="glow-hover cursor-pointer"
                   style={{
                     background: "white",
                     color: "var(--love-foreground)",
@@ -128,27 +131,16 @@ export function ProposalCard() {
               </div>
             )}
 
-            {step === "yes" && (
-              <motion.p
-                className="mt-4 text-center text-lg md:text-xl"
-                initial={{ opacity: 0, y: 6 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.35 }}
-              >
-                {"Sending you infinite smiles, laughs, and sweet adventures, Sania! 🫶✨"}
-              </motion.p>
-            )}
-
             {(step === "nudge" || step === "evasive") && (
               <div className="relative">
                 {step === "nudge" && (
                   <motion.p
-                    className="text-center text-base md:text-lg mb-4"
+                    className="text-center text-base md:text-lg mb-4 text-slate-600"
                     initial={{ opacity: 0, y: 6 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.3 }}
                   >
-                    {"Choose wisely 😌"}
+                    {"Cooking pizza right now... choose wisely 😌🍕"}
                   </motion.p>
                 )}
 
@@ -156,8 +148,11 @@ export function ProposalCard() {
                   {/* Okay button stays clickable */}
                   <div className="absolute left-1/2 -translate-x-1/2 bottom-0">
                     <Button
-                      onClick={() => setStep("finally-yes")}
-                      className="glow-hover"
+                      onClick={() => {
+                        setStep("finally-yes")
+                        fireConfetti()
+                      }}
+                      className="glow-hover cursor-pointer"
                       style={{
                         background: "var(--love-accent)",
                         color: "white",
@@ -191,7 +186,7 @@ export function ProposalCard() {
                     >
                       <Button
                         variant="secondary"
-                        className="glow-hover"
+                        className="glow-hover cursor-pointer"
                         style={{
                           background: "white",
                           color: "var(--love-foreground)",
@@ -199,7 +194,6 @@ export function ProposalCard() {
                         size="lg"
                         onClick={(e) => {
                           e.preventDefault()
-                          // As a safety, still dodge on click attempts:
                           moveNoButton()
                         }}
                       >
@@ -210,38 +204,47 @@ export function ProposalCard() {
                 </div>
 
                 <motion.p
-                  className="mt-4 text-center text-sm opacity-90"
+                  className="mt-4 text-center text-sm text-slate-500"
                   initial={{ opacity: 0, y: 6 }}
                   animate={{ opacity: step === "evasive" ? 1 : 0.6, y: 0 }}
                   transition={{ duration: 0.3 }}
                 >
-                  {"You can’t escape me, Sania 😜💘"}
+                  {"You can’t escape this, Madhuri 😜"}
                 </motion.p>
               </div>
             )}
 
-            {step === "finally-yes" && (
+            {(step === "yes" || step === "finally-yes") && (
               <motion.div
                 initial={{ opacity: 0, y: 6 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.35 }}
                 className="text-center"
               >
-                <p className="text-base md:text-lg">
-                  {"Friendship officially activated, Sania! 🤝💫 Let’s make beautiful memories."}
+                {/* The required sentence */}
+                <p className="text-xl md:text-2xl font-medium text-slate-800 my-2">
+                  {"Cooking pizza and pizza is ready, ab toh dost banja! 🍕😋"}
                 </p>
-                <div className="mt-4 flex items-center justify-center gap-2">
+
+                <p className="text-sm md:text-base text-slate-600 mt-2">
+                  {"Pretty sunsets, good skincare & hot pizza await. 🌅✨"}
+                </p>
+
+                <div className="mt-6 flex items-center justify-center gap-3">
                   <Button
-                    onClick={handleYes}
-                    className="glow-hover"
+                    onClick={fireConfetti}
+                    className="glow-hover cursor-pointer"
                     style={{ background: "var(--love-accent)", color: "white" }}
                   >
-                    {"Confetti again!"}
+                    {"Confetti again! 🎉"}
                   </Button>
                   <Button
                     variant="secondary"
-                    className="glow-hover"
-                    onClick={() => setStep("initial")}
+                    className="glow-hover cursor-pointer"
+                    onClick={() => {
+                      setStep("initial")
+                      setNoXY({ x: 0, y: 0 })
+                    }}
                     style={{ background: "white", color: "var(--love-foreground)" }}
                   >
                     {"Restart"}
